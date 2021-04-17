@@ -31,12 +31,16 @@ import { MatListModule } from '@angular/material/list';
 import { MatChipsModule } from '@angular/material/chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TitleComponent } from './title/title.component';
+import { RegisterComponent } from './register/register.component';
+import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    TitleComponent
+    TitleComponent,
+    RegisterComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
