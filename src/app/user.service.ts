@@ -8,24 +8,27 @@ export class UserService {
   userRef : firebase.database.Reference;
 
   constructor() {
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-      var firebaseConfig = {
-        apiKey: "AIzaSyDNe2W_sI63oWRto76cfFcZmCGpXz0XYNI",
-        authDomain: "smart-grader.firebaseapp.com",
-        databaseURL: "https://smart-grader-default-rtdb.firebaseio.com/",
-        projectId: "smart-grader",
-        storageBucket: "smart-grader.appspot.com",
-        messagingSenderId: "1034573033106",
-        appId: "1:1034573033106:web:c189232ae0fe196fa8004b",
-        measurementId: "G-NWKZW8Z2GC"
-      };
-      // Initialize Firebase
-      if (firebase.apps.length === 0){
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
-      }
-      this.userRef = firebase.database().ref().child("user");
+    console.log('user construct');
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyDNe2W_sI63oWRto76cfFcZmCGpXz0XYNI",
+      authDomain: "smart-grader.firebaseapp.com",
+      databaseURL: "https://smart-grader-default-rtdb.firebaseio.com/",
+      projectId: "smart-grader",
+      storageBucket: "smart-grader.appspot.com",
+      messagingSenderId: "1034573033106",
+      appId: "1:1034573033106:web:c189232ae0fe196fa8004b",
+      measurementId: "G-NWKZW8Z2GC"
+    };
+    // Initialize Firebase
+    if (firebase.apps.length === 0){
+      console.log("initing")
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+      console.log("finish initing")
+    }
+    this.userRef = firebase.database().ref().child("user");
    }
 
   public isLoggedIn(){

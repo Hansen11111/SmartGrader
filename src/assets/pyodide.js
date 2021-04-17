@@ -1,11 +1,12 @@
-async function main(){
+async function getSimilarityScore(correctAnswer, studentAnswer){
 	
 	await languagePluginLoader
 	console.log(await pyodide.runPythonAsync(`
 			import micropip
 			#await micropip.install('spacy')
-			
-			print(1)
+			from js import correctAnswer,studentAnswer
+
+			print(correctAnswer,studentAnswer)
 	`));
 	
 }
