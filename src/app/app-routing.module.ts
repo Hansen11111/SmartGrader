@@ -4,12 +4,16 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GradeAssignmentComponent } from './grade-assignment/grade-assignment.component'
 import { GradeViewComponent} from './grade-view/grade-view.component'
+import { SubmitAssignmentComponent} from './submit-assignment/submit-assignment.component'
+import { ViewAssignmentsComponent} from './view-assignments/view-assignments.component'
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
   {path: 'dashboard', component : DashboardComponent},
   {path : 'grading', component:GradeAssignmentComponent},
-  {path : 'answerView', component: GradeViewComponent}
+  {path : 'answerView', component: GradeViewComponent},
+  {path : 'submitAssignment', component: SubmitAssignmentComponent},
+  {path : 'viewAssignment', component : ViewAssignmentsComponent}
 ];
 
 @NgModule({
