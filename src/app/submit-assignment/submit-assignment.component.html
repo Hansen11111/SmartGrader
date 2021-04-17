@@ -30,7 +30,7 @@ fxLayoutAlign = "space-evenly"
                 </mat-panel-title>
             
                 <mat-form-field appearance="fill">
-                    <input matInput value = {{thisSubmission.ans}}>
+                    <input matInput value = {{thisSubmission.ans}} [(ngModel)]="thisSubmission.ans">
                 </mat-form-field>
 
         </div>
@@ -39,7 +39,7 @@ fxLayoutAlign = "space-evenly"
      <div 
         fxLayout = "row"
         fxLayoutAlign = "space-evenly center">
-            <button mat-raised-button style = "font-size: 2.2em;">SUBMIT</button>
+            <button mat-raised-button style = "font-size: 2.2em;" (click)="onSubmit()">SUBMIT</button>
          
  </div>
 

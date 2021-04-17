@@ -74,14 +74,14 @@ export class GradeAssignmentComponent implements OnInit {
     dialogConfig.width = "80%";
     dialogConfig.height = "80%";
     dialogConfig.autoFocus = true;
-
+    var dialogRef;
     if(this.isStudent){
       if(assignment.submitted == "True")return;
       dialogConfig.data = {
         assignmentName: assignment.name,
         studentID: this.data.studentID,
       }
-      this.dialog.open(SubmitAssignmentComponent, dialogConfig);
+      dialogRef = this.dialog.open(SubmitAssignmentComponent, dialogConfig);
     }
     else{
       if(assignment.submitted == "False")return;
@@ -90,12 +90,12 @@ export class GradeAssignmentComponent implements OnInit {
         studentID: this.data.studentID,
         grade:assignment.grade
       }
-      var dialogRef = this.dialog.open(GradeViewComponent, dialogConfig);
-      var dialogSub = dialogRef.afterClosed().subscribe(() => {
-        dialogSub.unsubscribe();
-        this.init() 
-      })
+      dialogRef = this.dialog.open(GradeViewComponent, dialogConfig);
     }
+    var dialogSub = dialogRef.afterClosed().subscribe(() => {
+      dialogSub.unsubscribe();
+      this.init() 
+    })
     
   }
 
