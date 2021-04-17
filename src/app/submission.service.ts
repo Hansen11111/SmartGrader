@@ -49,9 +49,14 @@ export class SubmissionService {
 
   public async generateScore(submissionID:string){
     var submission = await this.getSubmissionByID(submissionID);
-    var assignment = await this.assignmentService.getAssignmentByID(submission.assignmentID);
+     var assignment = await this.assignmentService.getAssignmentByID(submission.assignmentID);
     //TOOD: do pyodide stuff here
     var score = this.getSimilarityScore(assignment.answer, submission.answer)
     submission.set({score:score})
+  }
+
+  public async getSubmissionByStudentID(studentID:string){
+    var submission = await this.getAllSubmission()
+    return submission.filter(submission=>submission.studentID === studentID)
   }
 }

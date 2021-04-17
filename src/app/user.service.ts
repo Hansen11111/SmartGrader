@@ -55,10 +55,10 @@ export class UserService {
     students = []
     await this.userRef.once('value',(dataSnapshot)=> {
       var temp = dataSnapshot.val()
-      Object.keys(temp).map(function(key){  
+      Object.keys(temp).forEach(function(key){  
+        // put the studentid in the result
         temp[key]["key"] = key
         students.push(temp[key])
-        return students;  
       });
     });
     return students.filter(student=>student.type==="Student")

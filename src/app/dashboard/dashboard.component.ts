@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CreateAssignmentComponent } from '../create-assignment/create-assignment.component';
+import { GradeAssignmentComponent } from '../grade-assignment/grade-assignment.component';
 import { UserService } from '../user.service';
 
 @Component({
@@ -43,14 +44,17 @@ export class DashboardComponent implements OnInit {
   async onClickStudent(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.minWidth = 235;
-    dialogConfig.width = "400px";
+    dialogConfig.width = "80%";
+    dialogConfig.height = "80%";
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
       currentUserId: this.selectedStudent
     }
     console.log(this.selectedStudent)
     if(this.selectedStudent==null)return;
-    //TODO: open a dialog box here
+    dialogConfig.data.studentID = this.selectedStudent
+    
+    this.dialog.open(GradeAssignmentComponent, dialogConfig);
   }
 
   async onClickCreate(){
