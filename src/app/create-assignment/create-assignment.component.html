@@ -1,0 +1,25 @@
+<div *ngIf="true"
+style = "background-color: #323437;  color:azure; width:100%; height:100%;"
+>
+    <div style = "background-color:#323437;padding-left:10%; padding-top: 10%;">
+        <mat-form-field appearance="fill">
+            <mat-label>Assignment Name</mat-label>
+            <input matInput>
+          </mat-form-field>
+    </div>
+
+    <div 
+        style = "width:100%; height:60%;"
+        fxLayout="column" fxLayoutAlign="space-evenly center">
+        <mat-form-field appearance="fill" style = "width: 600px">
+            <mat-label>Question</mat-label>
+            <textarea matInput></textarea>
+          </mat-form-field>
+          <mat-form-field appearance="fill"style = "width: 600px">
+            <mat-label>Rubric</mat-label>
+            <textarea matInput></textarea>
+          </mat-form-field>
+          <button mat-raised-button>Submit Question</button>
+    </div>
+</div>
+

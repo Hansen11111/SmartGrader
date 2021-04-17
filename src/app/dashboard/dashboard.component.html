@@ -1,0 +1,49 @@
+<div *ngIf="true"
+style = "background-color: #323437;  color:azure; width:100%; height:100%;"
+>
+
+    <div 
+        style = "width:100%; height:100%;"
+        fxLayout="row" fxLayoutAlign="space-evenly center">
+        <button style = "font-size: 40px; color:#e2b714"
+        mat-button color="background-color">Create Assignment</button>
+        <mat-form-field appearance="fill" style= "font-size: 20px; color:#e2b714">
+            <mat-label>Grade Assignment</mat-label>
+            <select matNativeControl [(ngModel)]="selectedStudent" name="students">
+              <option value="" selected></option>
+              <option *ngFor="let student of students" [value]="student.value">
+                {{student.viewValue}}
+              </option>
+            </select>
+          </mat-form-field>
+    </div>
+</div>
+
+
+
+<div *ngIf="false"
+style = "background-color: #323437;  color:azure; width:100%; height:100%;"
+>
+
+    <div 
+        style = "width:100%; height:100%;"
+        fxLayout="row" fxLayoutAlign="space-evenly center">
+        <button style = "font-size: 40px; color:#e2b714"
+        mat-button color="background-color">View Submitted Assignments</button>
+        <button
+        style = "font-size: 40px; color:#e2b714"
+        mat-button color="background-color">Submit Assignment</button>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+        
+
