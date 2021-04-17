@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase'
+import firebase from 'firebase'
 
 import {Router} from '@angular/router';
 import { FormControl, Validators, PatternValidator } from '@angular/forms';
