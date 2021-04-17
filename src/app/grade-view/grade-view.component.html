@@ -23,7 +23,7 @@
         
         fxLayout = "column"
         fxLayoutAlign="space-evenly"
-        *ngFor = "let view, of gradeview"
+        *ngFor = "let view of gradeview;"
         
         >  
         <div 
@@ -36,11 +36,8 @@
                     {{view.ans}}
                 </mat-panel-title>
                 <mat-form-field appearance="fill">
-                    <input matInput value = {{view.mark}}>
-                  </mat-form-field>
-
-                
-            
+                    <input matInput value = {{view.mark}} [(ngModel)]="view.mark">
+                  </mat-form-field>            
 
         </div>
 
@@ -49,7 +46,7 @@
     <div 
         fxLayout = "row"
         fxLayoutAlign = "space-evenly center">
-            <button mat-raised-button style = "font-size: 2.2em;">GRADE</button>
+            <button mat-raised-button style = "font-size: 2.2em;" (click)="allocateGrade()">GRADE</button>
             
     </div>
     <div 

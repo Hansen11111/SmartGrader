@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AssignmentService } from '../assignment.service';
 import { SubmissionService } from '../submission.service';
@@ -8,7 +8,7 @@ import { SubmissionService } from '../submission.service';
   templateUrl: './grade-view.component.html',
   styleUrls: ['./grade-view.component.scss']
 })
-export class GradeViewComponent implements OnInit {
+export class GradeViewComponent implements OnInit,OnDestroy {
 
   gradeview:any
   grade:any
@@ -42,15 +42,41 @@ export class GradeViewComponent implements OnInit {
       submissions.filter(submission=>submission.assignmentID===assignment.name && submission.questionID == questionID).forEach(submission=>{
         var mark = submission.score
         if (submission.score==null)mark = "Unmarked"
-        res[questionID] = {question:assignment.questions[questionID].question, ans:submission.answer, mark:mark}
+        res[questionID] = {
+          submissionID:submission.submissionID,
+          question:assignment.questions[questionID].question, 
+          ans:submission.answer, 
+          mark:mark
+        }
       })
     });
   
     this.gradeview = Object.values(res);
   }
+  
+  async save(){
+    this.gradeview.forEach(async (view:any) => {
+      if(view.submissionID==undefined)return;
+      await this.submissionService.setSubmissionGrade(view.submissionID, view.mark);
+    });
+  } 
 
   ngOnInit(): void {
     this.init()
+  }
+
+  ngOnDestroy(): void {
+    this.save();
+  }
+
+  async allocateGrade(){
+    console.log("allocategrade")
+    this.gradeview.forEach(async (view:any) => {
+      if(view.submissionID==undefined)return;
+      var score = await this.submissionService.generateScore(view.submissionID);
+      console.log(score)
+      view.mark = score
+    });
   }
 
 }

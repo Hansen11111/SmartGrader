@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 import firebase from 'firebase';
 import { AssignmentService } from './assignment.service';
+declare var getSimilarityScore:any
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubmissionService {
-  getSimilarityScore: any
+  
 
   constructor(private userService : UserService, private assignmentService: AssignmentService) {
   }
@@ -17,7 +18,12 @@ export class SubmissionService {
     var submissions : any[];
     submissions = []
     await submissionRef.once('value',(data)=>{
-      submissions = data.val() ? Object.values(data.val()) : [];
+      var temp = data.val()
+      Object.keys(temp).forEach(key=>{  
+        // put the studentid in the result
+        temp[key]["submissionID"] = key
+        submissions.push(temp[key])
+      });
     });
     return submissions;
   }
@@ -26,7 +32,9 @@ export class SubmissionService {
     var submissionRef = firebase.database().ref().child('submission')
     var submission : any
     await submissionRef.child(submissionID).once('value',(data)=>{
-      submission = data.val() ? Object.values(data.val()) : [];
+      submission = data.val()
+      if(submission==undefined)return;
+      submission["submissionID"] = data.key
     });
     return submission;
   }
@@ -43,16 +51,16 @@ export class SubmissionService {
   }
 
   public async setSubmissionGrade(submissionID:string, score:number){
-    var submission = await this.getSubmissionByID(submissionID);
-    submission.set({score:score})
+    var submissionRef = firebase.database().ref().child('submission').child(submissionID)
+    submissionRef.update({score:score})
   }
 
   public async generateScore(submissionID:string){
     var submission = await this.getSubmissionByID(submissionID);
-     var assignment = await this.assignmentService.getAssignmentByID(submission.assignmentID);
-    //TOOD: do pyodide stuff here
-    var score = this.getSimilarityScore(assignment.answer, submission.answer)
-    submission.set({score:score})
+    var question = await this.assignmentService.getAssignmentQuestion(submission.assignmentID, submission.questionID);
+    var score = getSimilarityScore(question.answer, submission.answer)
+    this.setSubmissionGrade(submissionID,score)
+    return score
   }
 
   public async getSubmissionByStudentID(studentID:string){

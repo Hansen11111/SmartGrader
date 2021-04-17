@@ -50,7 +50,7 @@ export class AssignmentService {
   public async getAssignmentQuestion(assignmentID:string,questionID:string){
     var assignmentRef = firebase.database().ref().child('assignment')
     var assignment : any
-    await assignmentRef.child(assignmentID).child(questionID).once('value',(data)=>{
+    await assignmentRef.child(assignmentID).child('questions').child(questionID).once('value',(data)=>{
       assignment = data.val();
     });
     return assignment;

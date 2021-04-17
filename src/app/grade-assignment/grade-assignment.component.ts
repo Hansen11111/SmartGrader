@@ -77,7 +77,11 @@ export class GradeAssignmentComponent implements OnInit {
       studentID: this.data.studentID,
       grade:assignment.grade
     }
-    this.dialog.open(GradeViewComponent, dialogConfig);
+    var dialogRef = this.dialog.open(GradeViewComponent, dialogConfig);
+    var dialogSub = dialogRef.afterClosed().subscribe(() => {
+      dialogSub.unsubscribe();
+      this.init() 
+    })
   }
 
 }
