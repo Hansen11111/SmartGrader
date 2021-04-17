@@ -2,10 +2,10 @@
 style = "background-color: #323437;  color:azure; width:100%; height:100%;"
 >
     <div style = "background-color:#323437;padding-left:10%; padding-top: 10%;">
-        <mat-form-field appearance="fill">
-            <mat-label>Assignment Name</mat-label>
-            <input matInput>
-          </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Assignment Name</mat-label>
+        <input matInput [(ngModel)]="assignmentName">
+      </mat-form-field>
     </div>
 
     <div 
@@ -13,13 +13,13 @@ style = "background-color: #323437;  color:azure; width:100%; height:100%;"
         fxLayout="column" fxLayoutAlign="space-evenly center">
         <mat-form-field appearance="fill" style = "width: 600px">
             <mat-label>Question</mat-label>
-            <textarea matInput></textarea>
+            <textarea matInput [(ngModel)]="assignmentQuestion"></textarea>
           </mat-form-field>
           <mat-form-field appearance="fill"style = "width: 600px">
             <mat-label>Rubric</mat-label>
-            <textarea matInput></textarea>
+            <textarea matInput [(ngModel)]="assignmentAnswer"></textarea>
           </mat-form-field>
-          <button mat-raised-button>Submit Question</button>
+          <button mat-raised-button (click)="submit()">Submit Question</button>
     </div>
 </div>
 

@@ -38,12 +38,12 @@ export class UserService {
       return null;
     }
     var temp = firebase.auth().currentUser;
-    if(temp==null)return;
+    if(temp==null)return null;
     return temp.uid;
   }
 
   public async getUser(uid: string) {
-    var val;
+    var val:any;
     await this.userRef.child(uid).once('value',(dataSnapshot)=> {
       val = dataSnapshot.val();
     });

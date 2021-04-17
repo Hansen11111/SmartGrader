@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { CreateAssignmentComponent } from '../create-assignment/create-assignment.component';
 import { UserService } from '../user.service';
 
@@ -12,14 +13,29 @@ export class DashboardComponent implements OnInit {
 
   selectedStudent!: any;
   students: any[]
+  isStudent: any
 
-  constructor(private dialog : MatDialog, private userService:UserService) {
+  constructor(private dialog : MatDialog, private userService:UserService, private router: Router) {
     this.students = []
   }
 
   async init(){
     this.students = await this.userService.getStudents()
+    var id = await this.userService.getLoggedID()
+    if(id==null){
+      console.log("no id/not logged in")
+      // this.router.navigate(["."])
+      return;
+    }
+    var user = await this.userService.getUser(id)
+    if(user==null){
+      console.log("no user")
+      // this.router.navigate(["."])
+      return;
+    }
+    this.isStudent = user.type == "Student"
   }
+
   ngOnInit(): void {
     this.init()
   }
@@ -39,8 +55,8 @@ export class DashboardComponent implements OnInit {
 
   async onClickCreate(){
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.minWidth = 235;
-    dialogConfig.width = "400px";
+    dialogConfig.minWidth = 600;
+    dialogConfig.width = "1000px";
     dialogConfig.autoFocus = true;
 
     this.dialog.open(CreateAssignmentComponent, dialogConfig);
