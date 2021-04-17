@@ -20,7 +20,6 @@ export class GradeAssignmentComponent implements OnInit {
     private dialog : MatDialog) {
 
     this.studentAssignments = []
-    // this.studentAssignments = [{name:"Science",grade:"10", submitted: "True"}, {name:"Physics",grade:"10", submitted: "True"}]
     this.data = data
   }
 
@@ -75,7 +74,8 @@ export class GradeAssignmentComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
       assignmentName: assignment.name,
-      studentID: this.data.studentID
+      studentID: this.data.studentID,
+      grade:assignment.grade
     }
     this.dialog.open(GradeViewComponent, dialogConfig);
   }

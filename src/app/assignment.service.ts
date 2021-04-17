@@ -42,7 +42,7 @@ export class AssignmentService {
     var assignmentRef = firebase.database().ref().child('assignment')
     var assignment : any
     await assignmentRef.child(assignmentID).once('value',(data)=>{
-      assignment = data.val() ? Object.values(data.val()) : [];
+      assignment = data.val();
     });
     return assignment;
   }
@@ -51,7 +51,7 @@ export class AssignmentService {
     var assignmentRef = firebase.database().ref().child('assignment')
     var assignment : any
     await assignmentRef.child(assignmentID).child(questionID).once('value',(data)=>{
-      assignment = data.val() ? Object.values(data.val()) : [];
+      assignment = data.val();
     });
     return assignment;
   }
