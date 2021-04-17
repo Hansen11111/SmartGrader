@@ -59,7 +59,6 @@ export class SubmissionService {
     var submission = await this.getSubmissionByID(submissionID);
     var question = await this.assignmentService.getAssignmentQuestion(submission.assignmentID, submission.questionID);
     var score = getSimilarityScore(question.answer, submission.answer)
-    this.setSubmissionGrade(submissionID,score)
     return score
   }
 

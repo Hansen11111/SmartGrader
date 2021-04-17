@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/d
 import { AssignmentService } from '../assignment.service';
 import { GradeViewComponent } from '../grade-view/grade-view.component';
 import { SubmissionService } from '../submission.service';
+import { SubmitAssignmentComponent } from '../submit-assignment/submit-assignment.component';
 
 @Component({
   selector: 'app-grade-assignment',
@@ -13,6 +14,7 @@ export class GradeAssignmentComponent implements OnInit {
 
   studentAssignments : any[]
   data:any
+  isStudent:boolean
   constructor(
     @Inject(MAT_DIALOG_DATA) data: any, 
     private assignmentService:AssignmentService, 
@@ -21,6 +23,7 @@ export class GradeAssignmentComponent implements OnInit {
 
     this.studentAssignments = []
     this.data = data
+    this.isStudent = data.isStudent 
   }
 
   async init(){
@@ -66,22 +69,34 @@ export class GradeAssignmentComponent implements OnInit {
   }
 
   async expandAssignment(assignment:any){
-    if(assignment.submitted == "False")return;
     const dialogConfig = new MatDialogConfig();
     dialogConfig.minWidth = 235;
     dialogConfig.width = "80%";
     dialogConfig.height = "80%";
     dialogConfig.autoFocus = true;
-    dialogConfig.data = {
-      assignmentName: assignment.name,
-      studentID: this.data.studentID,
-      grade:assignment.grade
+
+    if(this.isStudent){
+      if(assignment.submitted == "True")return;
+      dialogConfig.data = {
+        assignmentName: assignment.name,
+        studentID: this.data.studentID,
+      }
+      this.dialog.open(SubmitAssignmentComponent, dialogConfig);
     }
-    var dialogRef = this.dialog.open(GradeViewComponent, dialogConfig);
-    var dialogSub = dialogRef.afterClosed().subscribe(() => {
-      dialogSub.unsubscribe();
-      this.init() 
-    })
+    else{
+      if(assignment.submitted == "False")return;
+      dialogConfig.data = {
+        assignmentName: assignment.name,
+        studentID: this.data.studentID,
+        grade:assignment.grade
+      }
+      var dialogRef = this.dialog.open(GradeViewComponent, dialogConfig);
+      var dialogSub = dialogRef.afterClosed().subscribe(() => {
+        dialogSub.unsubscribe();
+        this.init() 
+      })
+    }
+    
   }
 
 }

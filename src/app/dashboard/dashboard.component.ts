@@ -58,7 +58,9 @@ export class DashboardComponent implements OnInit {
       if(this.selectedStudent==null)return;
     }
     dialogConfig.data = {
-      studentID: studentID
+      studentID: studentID,
+      userID: this.userID,
+      isStudent: this.isStudent
     }
     
   
