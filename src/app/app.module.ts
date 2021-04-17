@@ -35,6 +35,8 @@ import { RegisterComponent } from './register/register.component';
 import { SigninComponent } from './signin/signin.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateAssignmentComponent } from './create-assignment/create-assignment.component';
+import { GradeAssignmentComponent } from './grade-assignment/grade-assignment.component';
+import { GradeViewComponent } from './grade-view/grade-view.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { CreateAssignmentComponent } from './create-assignment/create-assignment
     RegisterComponent,
     SigninComponent,
     DashboardComponent,
-    CreateAssignmentComponent
+    CreateAssignmentComponent,
+    GradeAssignmentComponent,
+    GradeViewComponent
   ],
   imports: [
     BrowserModule,
