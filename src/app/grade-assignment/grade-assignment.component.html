@@ -26,7 +26,7 @@
         <div 
             fxLayout="row" fxLayoutAlign="space-evenly">
             <button style = "font-size: 40px; color:antiquewhite;display:flex;" 
-                mat-button color="background-color">{{assignment.name}}
+                mat-button color="background-color" (click)="expandAssignment(assignment)">{{assignment.name}}
             </button>
             <p style = "font-size: 40px; color:antiquewhite;display:flex">{{assignment.grade}}</p>
         

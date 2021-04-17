@@ -50,11 +50,14 @@ export class DashboardComponent implements OnInit {
     dialogConfig.data = {
       currentUserId: this.selectedStudent
     }
-    console.log(this.selectedStudent)
     if(this.selectedStudent==null)return;
     dialogConfig.data.studentID = this.selectedStudent
-    
-    this.dialog.open(GradeAssignmentComponent, dialogConfig);
+
+    var dialogRef = this.dialog.open(GradeAssignmentComponent, dialogConfig);
+    var dialogSub = dialogRef.afterClosed().subscribe(() => {
+      dialogSub.unsubscribe();
+      this.selectedStudent = undefined;
+    })
   }
 
   async onClickCreate(){

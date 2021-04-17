@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AssignmentService } from '../assignment.service';
+import { GradeViewComponent } from '../grade-view/grade-view.component';
 import { SubmissionService } from '../submission.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class GradeAssignmentComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) data: any, 
     private assignmentService:AssignmentService, 
-    private submissionService: SubmissionService) {
+    private submissionService: SubmissionService,
+    private dialog : MatDialog) {
 
     this.studentAssignments = []
     // this.studentAssignments = [{name:"Science",grade:"10", submitted: "True"}, {name:"Physics",grade:"10", submitted: "True"}]
@@ -62,6 +64,20 @@ export class GradeAssignmentComponent implements OnInit {
   
   ngOnInit(): void {
     this.init()
+  }
+
+  async expandAssignment(assignment:any){
+    if(assignment.submitted == "False")return;
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.minWidth = 235;
+    dialogConfig.width = "80%";
+    dialogConfig.height = "80%";
+    dialogConfig.autoFocus = true;
+    dialogConfig.data = {
+      assignmentName: assignment.name,
+      studentID: this.data.studentID
+    }
+    this.dialog.open(GradeViewComponent, dialogConfig);
   }
 
 }
