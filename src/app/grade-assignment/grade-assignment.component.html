@@ -24,13 +24,14 @@
     *ngFor = "let assignment, of studentAssignments">
 
         <div 
-            fxLayout="row" fxLayoutAlign="space-evenly">
-            <button style = "font-size: 40px; color:antiquewhite;display:flex;" 
+            fxLayout="row" fxLayoutAlign="space-evenly"
+            >
+            <button style = "font-size: 40px; color:antiquewhite;" 
                 mat-button color="background-color" (click)="expandAssignment(assignment)">{{assignment.name}}
             </button>
-            <p style = "font-size: 40px; color:antiquewhite;display:flex">{{assignment.grade}}</p>
+            <p style = "font-size: 40px; color:antiquewhite;">{{assignment.grade}}</p>
         
-            <p style = "font-size: 40px; color:antiquewhite;display:flex">{{assignment.submitted}}</p>
+            <p style = "font-size: 40px; color:antiquewhite;">{{assignment.submitted}}</p>
             
             
 

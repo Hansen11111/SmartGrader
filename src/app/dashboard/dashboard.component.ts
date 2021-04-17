@@ -47,8 +47,8 @@ export class DashboardComponent implements OnInit {
     var studentID;
     const dialogConfig = new MatDialogConfig();
     dialogConfig.minWidth = 235;
-    dialogConfig.width = "80%";
-    dialogConfig.height = "80%";
+    dialogConfig.width = "100%";
+    dialogConfig.height = "100%";
     dialogConfig.autoFocus = true;
     if(this.isStudent){
       studentID = this.userID
