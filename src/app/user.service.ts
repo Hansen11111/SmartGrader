@@ -8,7 +8,6 @@ export class UserService {
   userRef : firebase.database.Reference;
 
   constructor() {
-    console.log('user construct');
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     var firebaseConfig = {
@@ -23,10 +22,8 @@ export class UserService {
     };
     // Initialize Firebase
     if (firebase.apps.length === 0){
-      console.log("initing")
       firebase.initializeApp(firebaseConfig);
       firebase.analytics();
-      console.log("finish initing")
     }
     this.userRef = firebase.database().ref().child("user");
    }
