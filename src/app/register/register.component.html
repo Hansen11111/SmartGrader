@@ -1,0 +1,58 @@
+<div
+    style="background-color: #323437;  color:azure;"
+    fxLayout="column" fxLayoutAlign="space-evenly">
+
+    <div style = "color:antiquewhite">Register</div>
+  
+    <p>
+        <mat-form-field appearance="legacy">
+        <mat-label>username</mat-label>
+        <input matInput>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="standard">
+        <mat-label>email</mat-label>
+        <input matInput>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance= "standard">
+            <mat-label>password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+    </p>
+
+    <p>
+        <mat-form-field appearance= "standard">
+            <mat-label>verify password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+    </p>
+    <p>  
+        <mat-form-field appearance="standard">
+            <mat-label>UserType</mat-label>
+            <select matNativeControl required>
+              <option value="No Option"></option>  
+              <option value="Student">Student</option>
+              <option value="Teacher">Teacher</option>
+            </select>
+          </mat-form-field>
+    </p>
+  
+
+    <p>
+        <button mat-raised-button color="antiquewhite">Sign Up
+            <a mat-raised-button href="https://www.google.com/" target="_blank"></a>
+            </button>
+    </p>
+ 
+    
+
+</div>
