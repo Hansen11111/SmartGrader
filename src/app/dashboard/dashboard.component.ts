@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   selectedStudent!: any;
   students: any[]
   isStudent: any
+  userID :any
 
   constructor(private dialog : MatDialog, private userService:UserService, private router: Router) {
     this.students = []
@@ -23,6 +24,7 @@ export class DashboardComponent implements OnInit {
   async init(){
     this.students = await this.userService.getStudents()
     var id = await this.userService.getLoggedID()
+    this.userID = id
     if(id==null){
       console.log("no id/not logged in")
       // this.router.navigate(["."])
@@ -42,17 +44,24 @@ export class DashboardComponent implements OnInit {
   }
 
   async onClickStudent(){
+    var studentID;
     const dialogConfig = new MatDialogConfig();
     dialogConfig.minWidth = 235;
     dialogConfig.width = "80%";
     dialogConfig.height = "80%";
     dialogConfig.autoFocus = true;
-    dialogConfig.data = {
-      currentUserId: this.selectedStudent
+    if(this.isStudent){
+      studentID = this.userID
     }
-    if(this.selectedStudent==null)return;
-    dialogConfig.data.studentID = this.selectedStudent
-
+    else{
+      studentID = this.selectedStudent
+      if(this.selectedStudent==null)return;
+    }
+    dialogConfig.data = {
+      studentID: studentID
+    }
+    
+  
     var dialogRef = this.dialog.open(GradeAssignmentComponent, dialogConfig);
     var dialogSub = dialogRef.afterClosed().subscribe(() => {
       dialogSub.unsubscribe();
