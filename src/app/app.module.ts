@@ -33,6 +33,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TitleComponent } from './title/title.component';
 import { RegisterComponent } from './register/register.component';
 import { SigninComponent } from './signin/signin.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CreateAssignmentComponent } from './create-assignment/create-assignment.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { SigninComponent } from './signin/signin.component';
     LoginComponent,
     TitleComponent,
     RegisterComponent,
-    SigninComponent
+    SigninComponent,
+    DashboardComponent,
+    CreateAssignmentComponent
   ],
   imports: [
     BrowserModule,
