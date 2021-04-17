@@ -49,4 +49,18 @@ export class UserService {
     });
     return val;
   }
+
+  public async getStudents(){
+    var students:any[];
+    students = []
+    await this.userRef.once('value',(dataSnapshot)=> {
+      var temp = dataSnapshot.val()
+      Object.keys(temp).map(function(key){  
+        temp[key]["key"] = key
+        students.push(temp[key])
+        return students;  
+      });
+    });
+    return students.filter(student=>student.type==="Student")
+  }
 }
