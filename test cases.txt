@@ -1,0 +1,15 @@
+### bad answer
+sample_ans = 'Since it is a screening test, it is clear that we are trying to answer whether a patient has a cancer or not. It is a binary decision (True or False) which it is a very common in Machine Learning.'
+student_ans = 'We are trying to predict whether a patient has a cancer. It is a classification problem.'
+
+###  bad answer
+sample_ans = 'Assuming that we have trained our model based on the historical data from previous patients, it would be a (binary) Classification problem.'
+student_ans = 'After the training process, this is a classification problem.'
+
+### good answer
+sample_ans = 'The simple answer is that we are trying to find the “author” of a writing, so that’s the concept we are trying to learn (predict). However, depending on the domain of the problem, the approaches can be different.'
+student_ans = '"Author" of the articles is the concept we are trying to learn and we have different approaches to this problem depends on the domain of this problem.'
+
+### good answer
+sample_ans = 'Typically, we would apply this smoothing process when building the model, and then substitute in the Laplace-smoothed values when making the predictions. For brevity, though, I’ll make the smoothing corrections in the prediction step.'
+student_ans = 'We would apply this smoothing process when building the model,then substitute in the Laplace-smoothed values'
