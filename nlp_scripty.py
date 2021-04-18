@@ -54,7 +54,7 @@ def normalize(text):
     return stem_tokens(splitText(text))
     
 
-def cosine_sim(text1, text2):
+def cosine_sim(vectorizer，text1, text2):
     vectorizer = TfidfVectorizer(tokenizer=normalize, stop_words='english')
     tfidf = vectorizer.fit_transform([text1, text2])
     dict_sam=tfidf[1].todok().items()
@@ -72,7 +72,7 @@ def predict_grade(student_ans, sample_ans):
     stu_lst=preprocess(student_ans)
     sam_lst=preprocess(sample_ans)
     similarity_score1= cosine_similarity_score(stu_lst, sam_lst)
-    similarity_score2= cosine_sim(student_ans, sample_ans)
+    similarity_score2= cosine_sim(vectorizer，student_ans, sample_ans)
     ### final grade
     grade = 1/(1+math.exp(0-((similarity_score1+similarity_score2)/2-0.3)*4))*100
     print(similarity_score1, similarity_score2)
