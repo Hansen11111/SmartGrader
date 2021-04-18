@@ -57,7 +57,7 @@ export class GradeViewComponent implements OnInit,OnDestroy {
   async save(){
     this.gradeview.forEach(async (view:any) => {
       if(view.submissionID==undefined)return;
-      await this.submissionService.setSubmissionGrade(view.submissionID, view.mark);
+      await this.submissionService.setSubmissionGrade(view.submissionID, Number(view.mark));
     });
   } 
 
