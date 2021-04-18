@@ -5,6 +5,9 @@ import { CreateAssignmentComponent } from '../create-assignment/create-assignmen
 import { GradeAssignmentComponent } from '../grade-assignment/grade-assignment.component';
 import { UserService } from '../user.service';
 
+declare var initPyodide:any;
+declare var initialized:Boolean;
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -41,6 +44,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.init()
+    if(!initialized){
+      initialized=true;
+      initPyodide()
+    }
   }
 
   async onClickStudent(){
