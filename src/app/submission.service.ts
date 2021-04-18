@@ -19,6 +19,7 @@ export class SubmissionService {
     submissions = []
     await submissionRef.once('value',(data)=>{
       var temp = data.val()
+      if(temp==null)return;
       Object.keys(temp).forEach(key=>{  
         // put the studentid in the result
         temp[key]["submissionID"] = key
