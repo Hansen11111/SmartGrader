@@ -30,13 +30,13 @@ export class DashboardComponent implements OnInit {
     this.userID = id
     if(id==null){
       console.log("no id/not logged in")
-      // this.router.navigate(["."])
+      this.router.navigate([""])
       return;
     }
     var user = await this.userService.getUser(id)
     if(user==null){
       console.log("no user")
-      // this.router.navigate(["."])
+      this.router.navigate([""])
       return;
     }
     this.isStudent = user.type == "Student"

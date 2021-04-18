@@ -13,7 +13,8 @@ const routes: Routes = [
   {path : 'grading', component:GradeAssignmentComponent},
   {path : 'answerView', component: GradeViewComponent},
   {path : 'submitAssignment', component: SubmitAssignmentComponent},
-  {path : 'viewAssignment', component : ViewAssignmentsComponent}
+  {path : 'viewAssignment', component : ViewAssignmentsComponent},
+  {path:'',redirectTo:"/login",pathMatch:'full'}
 ];
 
 @NgModule({
